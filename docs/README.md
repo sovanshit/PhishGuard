@@ -844,6 +844,6 @@ If you found this project helpful, consider giving it a **⭐ Star** on GitHub.
 
 <br>
 
-Made with ❤️ by **Sovan Shit**
+Made with ❤️ by **Team PhishGuard**
 
 </div>
