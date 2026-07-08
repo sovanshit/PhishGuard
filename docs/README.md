@@ -4,43 +4,33 @@
 
 ### AI-Powered Phishing Website Detection Platform
 
-<p align="center">
-Protect yourself from phishing attacks with intelligent URL analysis powered by Machine Learning.
-</p>
+Verify Before You Trust
 
-<p align="center">
-<b>🔒 Verify Before You Trust</b>
-</p>
+Detect malicious websites using **Machine Learning**, **Django**, and **Firebase** before visiting them.
 
 <br>
 
-<a href="https://phishguard.qzz.io/" target="_blank">
-<img src="https://img.shields.io/badge/🌐%20Live%20Demo-Visit%20Website-22c55e?style=for-the-badge">
+<a href="https://phishguard.qzz.io/">
+    <img src="https://img.shields.io/badge/🚀%20Live%20Website-22c55e?style=for-the-badge&logo=googlechrome&logoColor=white">
 </a>
 
-<a href="https://github.com/sovanshit/PhishGuard" target="_blank">
-<img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white">
-</a>
-
-<a href="#">
-<img src="https://img.shields.io/badge/License-Educational-blue?style=for-the-badge">
+<a href="https://github.com/sovanshit/PhishGuard">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white">
 </a>
 
 <br><br>
 
 <img src="https://img.shields.io/badge/Status-Completed-success?style=flat-square">
 
-<img src="https://img.shields.io/badge/Django-Framework-0C4B33?style=flat-square">
-
 <img src="https://img.shields.io/badge/Python-3.x-blue?style=flat-square">
 
-<img src="https://img.shields.io/badge/Machine-Learning-orange?style=flat-square">
+<img src="https://img.shields.io/badge/Django-Framework-success?style=flat-square">
 
 <img src="https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=flat-square">
 
-<img src="https://img.shields.io/badge/Responsive-Yes-blue?style=flat-square">
+<img src="https://img.shields.io/badge/Machine%20Learning-Enabled-orange?style=flat-square">
 
-<img src="https://img.shields.io/badge/Open%20Source-Project-black?style=flat-square">
+<img src="https://img.shields.io/badge/Responsive-Yes-blue?style=flat-square">
 
 </div>
 
@@ -48,39 +38,37 @@ Protect yourself from phishing attacks with intelligent URL analysis powered by 
 
 # 🌐 Live Demo
 
+Experience the live version of **PhishGuard** and test phishing URL detection in real time.
+
 <div align="center">
 
-## 🚀 Experience PhishGuard Online
+<a href="https://phishguard.qzz.io/">
 
-<a href="https://phishguard.qzz.io/" target="_blank">
-
-<img src="https://img.shields.io/badge/Launch%20Website-PhishGuard-22c55e?style=for-the-badge&logo=googlechrome&logoColor=white">
+<img src="https://img.shields.io/badge/🌍%20Open%20PhishGuard-Live-success?style=for-the-badge&logo=googlechrome&logoColor=white">
 
 </a>
-
-<br><br>
-
-### 🔗 https://phishguard.qzz.io/
 
 </div>
 
 ---
 
-# 📖 About PhishGuard
+# 📖 About
 
-PhishGuard is an **AI-powered phishing detection platform** developed using **Python**, **Django**, **Machine Learning**, and **Firebase Firestore**.
+**PhishGuard** is an AI-powered phishing website detection platform developed using **Python**, **Django**, **Machine Learning**, and **Firebase Firestore**.
 
-The application analyzes website URLs using intelligent feature extraction and predicts whether a website is **Safe**, **Suspicious**, or **Malicious** before users interact with it.
+The system analyzes website URLs using intelligent feature extraction and predicts whether a website is **Safe**, **Suspicious**, or **Malicious** before users interact with it.
 
-Designed with a modern responsive interface, PhishGuard helps users identify phishing websites while providing detailed analytics through an interactive dashboard.
+The platform combines a modern user interface with machine learning to help users stay protected from phishing attacks while providing detailed security insights through an interactive dashboard.
 
-### Core Objectives
+---
 
-- Detect phishing websites accurately
-- Protect users from cyber attacks
-- Improve phishing awareness
-- Provide real-time URL analysis
-- Deliver a clean and responsive user experience
+## 🎯 Objectives
+
+- Detect phishing websites accurately.
+- Protect users from malicious URLs.
+- Improve cybersecurity awareness.
+- Provide real-time URL analysis.
+- Deliver a clean and responsive user experience.
 
 ---
 
@@ -89,57 +77,55 @@ Designed with a modern responsive interface, PhishGuard helps users identify phi
 <table>
 
 <tr>
-
 <td width="50%">
 
-## 🔍 URL Detection
+### 🔍 Detection
 
 - Real-Time URL Scanning
 - Machine Learning Prediction
-- URL Feature Analysis
-- Threat Classification
-- Instant Results
+- URL Feature Extraction
+- Instant Threat Detection
+- Safe / Suspicious / Malicious Classification
 
 </td>
 
 <td width="50%">
 
-## 📊 Security Dashboard
+### 📊 Dashboard
 
-- Scan Statistics
+- Security Analytics
+- Weekly Activity
 - Threat Distribution
-- Weekly Analytics
-- Search & Filters
-- Export Reports
+- Scan History
+- CSV Export
 
 </td>
-
 </tr>
 
 <tr>
-
 <td>
 
-## 👤 User System
+### 👤 User Management
 
-- Login
-- Registration
+- Secure Login
+- User Registration
+- Firebase Authentication
 - Profile Management
-- Secure Authentication
+- Password Update
 
 </td>
 
 <td>
 
-## 🌐 Additional Features
+### 🌐 Additional Features
 
 - Browser Extension
-- Responsive UI
-- Dark Theme
+- Responsive Design
+- Modern Dark Theme
 - Fast Performance
+- Mobile Friendly
 
 </td>
-
 </tr>
 
 </table>
@@ -152,22 +138,20 @@ Designed with a modern responsive interface, PhishGuard helps users identify phi
 
 <img src="https://skillicons.dev/icons?i=html,css,js,python,django,firebase,git,vscode" />
 
+<br><br>
+
+| Frontend | Backend | Machine Learning | Database |
+|-----------|----------|------------------|-----------|
+| HTML5 | Django | Scikit-learn | Firebase Firestore |
+| CSS3 | Python | Pandas | |
+| JavaScript | | NumPy | |
+| Responsive UI | | Joblib | |
+
 </div>
-
-<br>
-
-| Category | Technologies |
-|----------|--------------|
-| 🎨 Frontend | HTML5 • CSS3 • JavaScript |
-| ⚙️ Backend | Python • Django |
-| 🤖 Machine Learning | Scikit-learn • Pandas • NumPy • Joblib |
-| ☁️ Database | Firebase Firestore |
-| 🔥 Firebase Services | Firebase Authentication • Cloud Firestore |
-| 🛠️ Tools | Git • GitHub • VS Code |
 
 ---
 
-# 🏗️ System Architecture
+# 🚀 Project Workflow
 
 ```mermaid
 flowchart LR
@@ -180,7 +164,7 @@ B --> C[⚙️ Django Backend]
 
 C --> D[🤖 Machine Learning Model]
 
-D --> E[🔍 URL Feature Extraction]
+D --> E[🔍 Feature Extraction]
 
 E --> F{Prediction}
 
@@ -201,123 +185,243 @@ H --> I[📊 Security Dashboard]
 
 | Module | Description |
 |---------|-------------|
-| 🏠 Home | Landing page introducing PhishGuard and phishing awareness |
-| 🔐 Authentication | Secure Login & Registration using Firebase Authentication |
-| 🔍 URL Scanner | Analyze URLs with Machine Learning |
-| 📊 Dashboard | Visualize scan statistics and analytics |
-| 📜 Scan History | Store and manage scanned URLs |
-| 👤 Profile | User profile management |
-| 🌐 Browser Extension | Scan websites directly while browsing |
+| 🏠 Home | Modern landing page introducing PhishGuard and cybersecurity awareness. |
+| 🔐 Authentication | Secure Login and Registration using Firebase Authentication. |
+| 🔍 URL Scanner | Scan and analyze website URLs using the Machine Learning model. |
+| 📊 Dashboard | View security analytics, charts, statistics, and scan history. |
+| 👤 Profile | Manage account information and application settings. |
+| 🌐 Browser Extension | Detect phishing websites directly while browsing. |
+
+---
+
+## 📌 Core Functionalities
+
+- ✅ AI-powered phishing website detection
+- ✅ Real-time URL scanning
+- ✅ Interactive analytics dashboard
+- ✅ Firebase Authentication
+- ✅ Firebase Firestore database
+- ✅ Browser Extension support
+- ✅ Scan History Management
+- ✅ Export Reports
+- ✅ Responsive UI
+- ✅ Modern Dark Theme
 
 ---
 
 # 📸 Project Screenshots
 
+A quick overview of the PhishGuard interface and its major modules.
+
+---
+
 ## 🏠 Home Page
 
-The landing page introduces users to PhishGuard with a modern interface, quick navigation, and phishing awareness content.
+The landing page introduces PhishGuard with a clean cyber-inspired interface, highlights the platform's features, and provides quick access to URL scanning and the security dashboard.
 
-<img src="screenshots/home.png"/>
+<img src="screenshots/home.png" alt="Home Page">
 
 ---
 
 ## 🔐 Authentication
 
-<table>
+Secure authentication system powered by **Firebase Authentication**.
 
+<table>
 <tr>
 
-<td>
+<td width="50%">
 
-### Login Page
+### Login
 
-<img src="screenshots/login.png"/>
+<img src="screenshots/login.png" alt="Login">
 
 </td>
 
-<td>
+<td width="50%">
 
-### Registration Page
+### Registration
 
-<img src="screenshots/signup.png"/>
+<img src="screenshots/signup.png" alt="Registration">
 
 </td>
 
 </tr>
-
 </table>
 
 ---
 
 ## 🔍 URL Scanner
 
-Users can enter any website URL to instantly check whether it is safe or malicious using the integrated Machine Learning model.
+The URL Scanner allows users to instantly verify whether a website is safe or malicious using the integrated Machine Learning model.
 
-### Features
+### Scanner Features
 
-- One-click URL scanning
-- Real-time prediction
-- Threat classification
-- Fast response
-- Responsive interface
+- Real-Time URL Analysis
+- Machine Learning Prediction
+- Safety Classification
+- Instant Response
+- Scan History Integration
 
-<img src="screenshots/scan.png"/>
+<img src="screenshots/scan.png" alt="URL Scanner">
 
 ---
 
 # 📊 Security Dashboard
 
-The Security Dashboard provides users with a centralized overview of their phishing detection activity.
+The Security Dashboard is the core module of PhishGuard, providing users with complete visibility into their phishing detection activities.
 
-It presents important security insights through interactive charts, analytics, and historical scan records.
+It combines analytics, charts, historical records, and account information into a modern dashboard.
 
-### Dashboard Highlights
+<img src="screenshots/dashboard.png" alt="Dashboard">
 
-| Feature | Description |
-|---------|-------------|
-| 📈 Statistics Cards | Total scans, Safe, Suspicious & Malicious URLs |
-| 📉 Weekly Activity | Track daily scanning trends |
-| 🥧 Threat Distribution | Pie chart visualization |
-| 📜 Scan History | Complete URL history |
-| 🔍 Search | Quickly search scanned URLs |
-| 🎯 Filters | Safe / Suspicious / Malicious |
-| 📤 Export Reports | Download scan history as CSV |
-| 👤 User Card | Account information and statistics |
+---
 
-<img src="screenshots/dashboard.png"/>
+## Dashboard Overview
+
+### 📈 Statistics Cards
+
+The dashboard displays key security metrics at a glance.
+
+| Card | Purpose |
+|------|---------|
+| 🔍 Total Scans | Number of scanned URLs |
+| 🟢 Safe URLs | Legitimate websites detected |
+| 🟡 Suspicious | URLs requiring attention |
+| 🔴 Malicious | Confirmed phishing websites |
+
+---
+
+### 📉 Activity Graph
+
+Monitor URL scanning activity over the last seven days.
+
+Features include:
+
+- Daily Scan Trend
+- Safe URL Count
+- Suspicious URL Count
+- Malicious URL Count
+
+---
+
+### 🥧 Threat Distribution
+
+Visual pie chart showing the percentage of:
+
+- 🟢 Safe URLs
+- 🟡 Suspicious URLs
+- 🔴 Malicious URLs
+
+This helps users quickly understand the security status of scanned websites.
+
+---
+
+### 📜 Scan History
+
+Every scanned URL is stored in Firestore and displayed inside the dashboard.
+
+Information includes:
+
+- URL
+- Detection Status
+- Security Score
+- Scan Date
+- Scan Time
+
+---
+
+### 🔍 Search & Filter
+
+Users can quickly locate previous scans using:
+
+- Search Box
+- All Filter
+- Safe Filter
+- Suspicious Filter
+- Malicious Filter
+
+---
+
+### 📤 Export Reports
+
+Scan history can be exported for reporting and future analysis.
+
+Supported format:
+
+- CSV
+
+---
+
+### 👤 User Information
+
+Dashboard also displays:
+
+- Profile Avatar
+- User Name
+- Email Address
+- Account Type
+
+---
+
+## Dashboard Highlights
+
+| Feature | Status |
+|---------|:------:|
+| Statistics Cards | ✅ |
+| Activity Chart | ✅ |
+| Threat Distribution | ✅ |
+| Search & Filter | ✅ |
+| Scan History | ✅ |
+| CSV Export | ✅ |
+| User Overview | ✅ |
+| Responsive Design | ✅ |
+
+---
+
+> 📌 The Security Dashboard acts as the central monitoring interface, allowing users to analyze phishing threats, review previous scans, and manage their security information through a clean and interactive experience.
 
 ---
 
 # 👤 Profile Management
 
-Manage your account with an intuitive and secure profile dashboard.
+The Profile module allows users to manage their personal information and customize their PhishGuard account in a secure environment.
 
-Users can easily update personal information, manage their account, and view security-related statistics.
+It provides quick access to account settings, profile details, and security preferences.
+
+<img src="screenshots/profile.png" alt="Profile Page">
 
 ---
 
-### Profile Features
+## Profile Features
 
 | Feature | Description |
 |---------|-------------|
 | 👤 Profile Information | View and update personal details |
-| 🔒 Password Management | Change password securely |
-| 📧 Email Information | Display registered email |
-| 📊 Personal Statistics | Total scans and account information |
-| 🕒 Scan History | Access previous URL scans |
-| 🗑️ Account Controls | Manage account settings |
+| 📧 Email Details | Registered email address |
+| 🔒 Password Management | Secure password updates |
+| 📊 Personal Statistics | View total scans and account activity |
+| 🗑️ Clear History | Remove scan history |
+| ⚙️ Account Settings | Manage profile preferences |
 
-<br>
+---
 
-<img src="screenshots/profile.png" width="100%">
+## Why Profile Management?
+
+- Keep account information updated.
+- Securely manage user credentials.
+- Access personalized dashboard statistics.
+- Improve overall user experience.
 
 ---
 
 # 🌐 Browser Extension
 
-PhishGuard provides a browser extension that enables users to analyze websites instantly while browsing.
+PhishGuard includes a lightweight browser extension that enables users to check website safety instantly while browsing.
 
-The extension communicates with the PhishGuard platform to provide quick phishing detection without opening the website manually.
+The extension communicates with the PhishGuard platform to provide real-time phishing detection without manually opening the web application.
+
+<img src="screenshots/extension.png" alt="Browser Extension">
 
 ---
 
@@ -337,29 +441,69 @@ The extension communicates with the PhishGuard platform to provide quick phishin
 
 | Feature | Description |
 |---------|-------------|
-| 🌐 Real-Time Website Detection | Scan URLs directly from the browser |
-| ⚡ Instant Alerts | Warn users before opening malicious websites |
-| 🛡️ Trust Indicator | Display website safety status |
-| 🔄 Dashboard Sync | Sync scanned URLs with user dashboard |
-| 🎯 Lightweight | Fast and optimized extension |
+| 🌐 Automatic URL Detection | Detects the currently opened website |
+| ⚡ Real-Time Analysis | Checks URLs instantly |
+| 🔔 Instant Warning | Alerts users before opening phishing websites |
+| 🛡️ Security Indicator | Displays website safety status |
+| 🔄 Dashboard Synchronization | Saves scan history to Firestore |
 
-<br>
+---
 
-<img src="screenshots/extension.png" width="100%">
+## Browser Extension Workflow
+
+```mermaid
+flowchart LR
+
+A[🌍 Open Website]
+
+A --> B[🧩 Browser Extension]
+
+B --> C[📤 Send URL]
+
+C --> D[🤖 Machine Learning Model]
+
+D --> E{Prediction}
+
+E -->|Safe| F[🟢 Safe]
+
+E -->|Suspicious| G[🟡 Suspicious]
+
+E -->|Malicious| H[🔴 Warning]
+
+F --> I[☁️ Firebase Firestore]
+
+G --> I
+
+H --> I
+```
 
 ---
 
 # ☁️ Firebase Integration
 
-PhishGuard uses **Firebase** services to provide a secure and scalable cloud backend.
+PhishGuard uses **Firebase** to provide secure authentication and cloud-based data storage.
 
-### Firebase Services Used
+Firebase enables users to securely access the application while synchronizing scan history across sessions.
+
+---
+
+## Firebase Services
 
 | Service | Purpose |
 |----------|---------|
-| 🔥 Firebase Authentication | User Login & Registration |
-| ☁️ Cloud Firestore | Store scan history and user data |
-| 🔐 Firebase Security Rules | Secure database access |
+| 🔐 Firebase Authentication | User Login & Registration |
+| ☁️ Cloud Firestore | Store user information and scan history |
+| 🔥 Firebase SDK | Communication between application and cloud |
+
+---
+
+## Benefits of Firebase
+
+- Secure Authentication
+- Cloud-Based Database
+- Fast Data Synchronization
+- Scalable Infrastructure
+- Reliable Performance
 
 ---
 
@@ -369,11 +513,12 @@ PhishGuard uses **Firebase** services to provide a secure and scalable cloud bac
 📦 PhishGuard
 │
 ├── 📂 detector
-│   ├── views.py
-│   ├── urls.py
-│   ├── models.py
+│   ├── admin.py
 │   ├── forms.py
-│   └── admin.py
+│   ├── models.py
+│   ├── urls.py
+│   ├── views.py
+│   └── utils.py
 │
 ├── 📂 templates
 │
@@ -398,9 +543,54 @@ PhishGuard uses **Firebase** services to provide a secure and scalable cloud bac
 
 ---
 
+## Project Architecture
+
+```mermaid
+graph TD
+
+A[User]
+
+A --> B[Frontend]
+
+B --> C[Django Backend]
+
+C --> D[Machine Learning]
+
+C --> E[Firebase Authentication]
+
+C --> F[Cloud Firestore]
+
+D --> G[Prediction Result]
+
+F --> G
+
+G --> H[Dashboard]
+```
+
+---
+
+## Folder Description
+
+| Folder | Description |
+|---------|-------------|
+| 📂 detector | Core Django application |
+| 📂 templates | HTML templates |
+| 📂 static | CSS, JavaScript, Images |
+| 📂 media | Uploaded media files |
+| 📂 ML_Model | Trained Machine Learning model |
+| 📂 firebase | Firebase configuration files |
+
+---
+
+> 📌 This modular project structure improves scalability, maintainability, and simplifies future feature development.
+
+---
+
 # 🚀 Installation
 
-### 1️⃣ Clone Repository
+Follow these steps to run **PhishGuard** locally.
+
+## 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/sovanshit/PhishGuard.git
@@ -408,7 +598,7 @@ git clone https://github.com/sovanshit/PhishGuard.git
 
 ---
 
-### 2️⃣ Navigate to Project
+## 2️⃣ Navigate to the Project
 
 ```bash
 cd PhishGuard
@@ -416,7 +606,7 @@ cd PhishGuard
 
 ---
 
-### 3️⃣ Create Virtual Environment
+## 3️⃣ Create a Virtual Environment
 
 ```bash
 python -m venv venv
@@ -424,15 +614,15 @@ python -m venv venv
 
 ---
 
-### 4️⃣ Activate Environment
+## 4️⃣ Activate the Environment
 
-**Windows**
+### Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-**Linux / macOS**
+### Linux / macOS
 
 ```bash
 source venv/bin/activate
@@ -440,7 +630,7 @@ source venv/bin/activate
 
 ---
 
-### 5️⃣ Install Dependencies
+## 5️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -448,22 +638,22 @@ pip install -r requirements.txt
 
 ---
 
-### 6️⃣ Configure Firebase
+## 6️⃣ Configure Firebase
 
-Add your Firebase Admin SDK service account key.
+Create a Firebase project and download your **Service Account Key**.
 
-Example:
+Place the file inside:
 
-```
+```text
 firebase/
 └── serviceAccountKey.json
 ```
 
-Update the Firebase configuration before running the application.
+Update the Firebase configuration inside `firebase_config.py`.
 
 ---
 
-### 7️⃣ Apply Migrations
+## 7️⃣ Apply Database Migrations
 
 ```bash
 python manage.py migrate
@@ -471,7 +661,7 @@ python manage.py migrate
 
 ---
 
-### 8️⃣ Run Development Server
+## 8️⃣ Run Development Server
 
 ```bash
 python manage.py runserver
@@ -479,9 +669,9 @@ python manage.py runserver
 
 ---
 
-Open:
+Open your browser and visit:
 
-```
+```text
 http://127.0.0.1:8000/
 ```
 
@@ -489,30 +679,36 @@ http://127.0.0.1:8000/
 
 # 🔒 Security Features
 
+PhishGuard is designed to improve user safety by combining Machine Learning with secure web technologies.
+
 | Feature | Description |
 |---------|-------------|
-| 🔍 URL Feature Extraction | Analyze URL structure and patterns |
-| 🌐 Domain Validation | Verify suspicious domains |
-| 🔐 HTTPS Verification | Detect secure connections |
-| 🤖 Machine Learning Prediction | Identify phishing websites |
+| 🔍 URL Feature Extraction | Analyze URL patterns and characteristics |
+| 🌐 Domain Validation | Detect suspicious domains |
+| 🔐 HTTPS Verification | Verify secure website connections |
+| 🤖 Machine Learning Detection | Predict phishing probability |
 | 📊 Threat Classification | Safe / Suspicious / Malicious |
 | 📜 Scan History | Store previous scans securely |
-| 👤 Authentication | Secure user login with Firebase |
+| 🔥 Firebase Authentication | Secure user authentication |
+| ☁️ Cloud Firestore | Secure cloud database storage |
 
 ---
 
 # 📈 Future Roadmap
 
+The following features are planned for future releases.
+
 | Feature | Status |
-|----------|:------:|
-| 📱 Android Application | 🚧 |
-| 🍎 iOS Application | 🚧 |
-| 📧 Email Phishing Detection | 🚧 |
-| 🔗 QR Code Scanner | 🚧 |
-| 🦊 Firefox Extension | 🚧 |
-| 🤖 AI Security Assistant | 🚧 |
-| 🌍 Multi-language Support | 🚧 |
-| 📊 Admin Analytics Dashboard | 🚧 |
+|---------|:------:|
+| 📱 Android Application | 🚧 Planned |
+| 🍎 iOS Application | 🚧 Planned |
+| 🌐 Firefox Extension | 🚧 Planned |
+| 📧 Email Phishing Detection | 🚧 Planned |
+| 📷 QR Code Scanner | 🚧 Planned |
+| 🤖 AI Security Assistant | 🚧 Planned |
+| 🌍 Multi-language Support | 🚧 Planned |
+| 📊 Admin Analytics Dashboard | 🚧 Planned |
+| 🔗 Threat Intelligence API | 🚧 Planned |
 
 ---
 
@@ -523,10 +719,10 @@ http://127.0.0.1:8000/
 | 💻 Frontend Pages | 7+ |
 | 📊 Dashboard | Included |
 | 🔍 URL Scanner | Included |
-| 🌐 Browser Extension | Included |
+| 👤 Authentication | Firebase |
 | ☁️ Database | Firebase Firestore |
-| 🔥 Firebase Authentication | Enabled |
 | 🤖 Machine Learning | Integrated |
+| 🌐 Browser Extension | Included |
 | 📱 Responsive Design | Yes |
 | 🌙 Dark Theme | Yes |
 
@@ -534,15 +730,25 @@ http://127.0.0.1:8000/
 
 # 🤝 Contributing
 
-Contributions are welcome.
+Contributions are always welcome.
 
-If you'd like to improve PhishGuard:
+### Contribution Workflow
 
-1. Fork the repository.
-2. Create a new feature branch.
-3. Commit your changes.
-4. Push your branch.
-5. Open a Pull Request.
+```text
+Fork Repository
+        │
+        ▼
+Create Feature Branch
+        │
+        ▼
+Commit Changes
+        │
+        ▼
+Push Branch
+        │
+        ▼
+Open Pull Request
+```
 
 ---
 
@@ -554,18 +760,18 @@ If you'd like to improve PhishGuard:
 
 ### Frontend Developer
 
-Designed and developed the complete frontend experience of **PhishGuard**, focusing on a modern, responsive, and user-friendly interface.
+Focused on designing a modern, responsive, and user-friendly interface for **PhishGuard**.
 
 </div>
 
 ---
 
-## Responsibilities
+### Responsibilities
 
 - 🎨 Landing Page Design
 - 🔐 Login & Registration UI
 - 🔍 URL Scanner Interface
-- 📊 Security Dashboard Design
+- 📊 Security Dashboard
 - 👤 Profile Management
 - 🌐 Browser Extension UI
 - 📱 Responsive Design
@@ -573,23 +779,24 @@ Designed and developed the complete frontend experience of **PhishGuard**, focus
 
 ---
 
-# 🏆 Key Highlights
+# 🏆 Project Highlights
 
-- 🤖 AI-Powered Phishing Detection
-- ☁️ Firebase Firestore Integration
-- 🔥 Firebase Authentication
-- 📊 Interactive Security Dashboard
-- 🌐 Browser Extension Support
-- 📱 Responsive Design
+- 🛡️ AI-Powered Phishing Detection
+- 🤖 Machine Learning Integration
+- ☁️ Firebase Firestore Database
+- 🔐 Firebase Authentication
+- 📊 Interactive Dashboard
+- 🌐 Browser Extension
+- 📱 Fully Responsive UI
 - 🌙 Modern Dark Theme
 - ⚡ Fast URL Analysis
-- 🛡️ Cybersecurity Focused Platform
+- 🔒 Secure User Authentication
 
 ---
 
 # 🙏 Acknowledgements
 
-Special thanks to the open-source community and technologies used in this project.
+Special thanks to the amazing open-source technologies that made this project possible.
 
 - Python
 - Django
@@ -609,21 +816,21 @@ Special thanks to the open-source community and technologies used in this projec
 
 This project is developed for **educational, research, and academic purposes**.
 
+Feel free to use this project for learning and non-commercial purposes.
+
 ---
 
-# 🌍 Live Demo
+# 🌍 Live Website
+
+Visit the deployed version of **PhishGuard**.
 
 <div align="center">
 
-## 🚀 Experience PhishGuard
-
 <a href="https://phishguard.qzz.io/">
-<img src="https://img.shields.io/badge/Launch%20Website-PhishGuard-22c55e?style=for-the-badge&logo=googlechrome&logoColor=white">
+
+<img src="https://img.shields.io/badge/🚀%20Visit%20Live%20Website-22c55e?style=for-the-badge&logo=googlechrome&logoColor=white">
+
 </a>
-
-<br><br>
-
-### 🔗 https://phishguard.qzz.io/
 
 </div>
 
@@ -631,9 +838,11 @@ This project is developed for **educational, research, and academic purposes**.
 
 <div align="center">
 
-# ⭐ Support This Project
+## ⭐ Support the Project
 
-If you found this project useful, please consider giving it a **⭐ Star** on GitHub.
+If you found this project helpful, consider giving it a **⭐ Star** on GitHub.
+
+<br>
 
 Made with ❤️ by **Sovan Shit**
 
