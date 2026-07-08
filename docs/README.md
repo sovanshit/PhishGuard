@@ -1,344 +1,440 @@
-# PhishGuard - URL Security Scanner
+<div align="center">
 
-A modern, interactive web application for detecting phishing URLs and malicious links with real-time threat analysis.
+# 🛡️ PhishGuard
 
-![PhishGuard](https://img.shields.io/badge/version-1.0.0-green)
-![License](https://img.shields.io/badge/license-MIT-blue)
+### AI-Powered Phishing Website Detection System
+
+Protect yourself from malicious websites with intelligent phishing detection powered by Machine Learning.
+
+🌐 **Live Website:** https://phishguard.qzz.io/
+
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/Machine%20Learning-Enabled-success?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge"/>
+
+</div>
 
 ---
 
-## 🚀 Quick Start
+# 📖 About The Project
 
-### Open the Application:
-Simply open **`index.html`** in your web browser!
+**PhishGuard** is a modern phishing detection platform developed using **Python**, **Django**, and **Machine Learning**. It helps users identify whether a website is safe or malicious before visiting it.
+
+The system analyzes URLs using intelligent feature extraction and a trained Machine Learning model to classify websites as **Safe**, **Suspicious**, or **Malicious**.
+
+Apart from phishing detection, the platform provides an advanced dashboard, scan history, profile management, browser extension support, and a clean responsive interface for a better user experience.
+
+---
+
+# ✨ Key Features
+
+- 🔍 Real-Time URL Scanning
+- 🤖 Machine Learning Based Detection
+- 📊 Interactive Security Dashboard
+- 📈 Scan Analytics
+- 📜 Complete Scan History
+- 📤 Export Scan History (CSV)
+- 👤 User Authentication
+- 🔐 Secure Login & Registration
+- ⚙ Profile Management
+- 🌐 Browser Extension
+- 📱 Responsive Design
+- 🌙 Modern Dark UI
+- ⚡ Fast Detection
+- 🎯 Easy to Use
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+## Backend
+
+- Python
+- Django
+
+## Machine Learning
+
+- Scikit-learn
+- Pandas
+- NumPy
+- Joblib
+
+## Database
+
+- SQLite
+
+## Tools
+
+- VS Code
+- Git
+- GitHub
+
+---
+
+# ⚙️ System Workflow
+
+```text
+User Enters URL
+        │
+        ▼
+Frontend (HTML/CSS/JS)
+        │
+        ▼
+Django Backend
+        │
+        ▼
+Machine Learning Model
+        │
+        ▼
+URL Feature Extraction
+        │
+        ▼
+Prediction
+        │
+        ▼
+Safe / Suspicious / Malicious
+        │
+        ▼
+Display Result
+```
+
+---
+
+# 📸 Project Screenshots
+
+## 🏠 Home Page
+
+The landing page introduces PhishGuard and provides quick access to URL scanning, dashboard, and phishing awareness.
+
+![Home](screenshots/home.png)
+
+---
+
+## 🔐 Login Page
+
+Secure user authentication with modern UI.
+
+![Login](screenshots/login.png)
+
+---
+
+## 📝 Registration Page
+
+Create an account to access dashboard features.
+
+![Signup](screenshots/signup.png)
+
+---
+
+## 🔍 URL Scanner
+
+Users can paste any URL to instantly analyze whether it is safe or malicious.
+
+Features:
+
+- Instant URL scanning
+- Threat detection
+- Recent scan history
+- Fast response
+
+![Scanner](screenshots/scan.png)
+
+---
+
+# 📊 Security Dashboard
+
+The Security Dashboard gives users a complete overview of phishing detection activity through charts, statistics, and history.
+
+### Dashboard Features
+
+### 📈 Scan Statistics
+
+Shows:
+
+- Total URLs Scanned
+- Safe URLs
+- Suspicious URLs
+- Malicious URLs
+
+---
+
+### 📉 Activity Graph
+
+Displays URL scanning activity over the last seven days.
+
+Helps users monitor trends and phishing attempts.
+
+---
+
+### 🥧 Threat Distribution
+
+Pie chart displaying
+
+- 🟢 Safe URLs
+- 🟡 Suspicious URLs
+- 🔴 Malicious URLs
+
+---
+
+### 📜 Scan History
+
+Complete table containing
+
+- URL
+- Detection Status
+- Security Score
+- Date
+- Time
+
+---
+
+### 🔍 Search & Filter
+
+Users can filter by
+
+- All
+- Safe
+- Suspicious
+- Malicious
+
+and search URLs instantly.
+
+---
+
+### 📤 Export Reports
+
+Download scan history as CSV.
+
+---
+
+### 👤 User Card
+
+Displays
+
+- Name
+- Email
+- Account Type
+
+---
+
+### 📱 Responsive Design
+
+Optimized for Desktop, Tablet and Mobile.
+
+### Dashboard Preview
+
+![Dashboard](screenshots/dashboard.png)
+
+---
+
+# 👤 Profile Management
+
+Users can
+
+- Update profile
+- Change password
+- View account information
+- Clear scan history
+- Delete account securely
+
+![Profile](screenshots/profile.png)
+
+---
+
+# 🌐 Browser Extension
+
+PhishGuard also includes a browser extension allowing users to scan websites directly while browsing.
+
+### Features
+
+- Automatic URL Detection
+- Real-Time Alerts
+- Visual Safety Badge
+- Dashboard Synchronization
+- One Click Installation
+
+### Installation
+
+1. Download Extension
+2. Extract ZIP
+3. Open Chrome Extensions
+4. Enable Developer Mode
+5. Load Unpacked Extension
+
+![Extension](screenshots/extension.png)
+
+---
+
+# 📂 Project Structure
+
+```text
+PhishGuard/
+│
+├── detector/
+│
+├── templates/
+│
+├── static/
+│
+├── media/
+│
+├── ML_Model/
+│
+├── db.sqlite3
+│
+├── manage.py
+│
+└── requirements.txt
+```
+
+---
+
+# 🚀 Installation
+
+Clone Repository
 
 ```bash
-# Navigate to the project folder
-cd d:\Projects\PhishGuard_split
-
-# Open in your default browser (Windows)
-start index.html
+git clone https://github.com/yourusername/phishguard.git
 ```
 
-That's it! No server or build process required.
+Go to Project
 
----
-
-## 📁 Project Structure
-
-```
-PhishGuard_split/
-│
-├── index.html              # Main application (SPA version)
-│
-├── assets/
-│   ├── css/
-│   │   └── style.css      # All styles and animations
-│   │
-│   └── js/
-│       └── app.js         # Application logic and SPA navigation
-│
-├── legacy/                 # Old multi-page version (deprecated)
-│   ├── index.html
-│   ├── check.html
-│   ├── dashboard.html
-│   ├── signin.html
-│   └── script.js
-│
-├── docs/                   # Documentation
-│   ├── README_IMPORTANT.md
-│   ├── SPA_VERSION_GUIDE.md
-│   ├── ANIMATION_IMPROVEMENTS.md
-│   ├── QUICK_TEST_GUIDE.md
-│   └── TEST_INSTRUCTIONS.md
-│
-└── README.md              # This file
-```
-
----
-
-## ✨ Features
-
-### 🔍 URL Scanning
-- Real-time phishing detection
-- SSL certificate verification
-- Domain reputation checking
-- Threat indicator analysis
-- Safety score calculation
-
-### 📊 Dashboard
-- Interactive charts and analytics
-- Scan history tracking
-- Threat distribution visualization
-- Real-time statistics
-- Export capabilities
-
-### 🎨 Modern UI/UX
-- Smooth page transitions
-- Interactive charts with hover effects
-- Animated metrics and counters
-- Responsive design
-- Glass morphism effects
-
-### 🔐 User Authentication
-- Sign in / Sign up functionality
-- Session management
-- User profile dashboard
-- Secure local storage
-
----
-
-## 🎯 Key Technologies
-
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with animations
-- **Vanilla JavaScript** - No frameworks, pure JS
-- **Canvas API** - Interactive charts
-- **LocalStorage** - Data persistence
-- **SPA Architecture** - Single Page Application
-
----
-
-## 🎨 Features Breakdown
-
-### 1. URL Scanner
-- Paste or type any URL
-- Instant threat analysis
-- Detailed security metrics
-- Visual threat indicators
-- Safe/Suspicious/Malicious classification
-
-### 2. Interactive Dashboard
-- **Line Chart**: 7-day scan activity with hover tooltips
-- **Pie Chart**: Threat distribution with interactive segments
-- **Metrics Cards**: Animated counters with real-time data
-- **History Table**: Searchable and filterable scan history
-
-### 3. Smooth Navigation
-- No page refreshes
-- Fade transitions (300ms)
-- Slide animations
-- Auto-scroll to top
-- Preserved application state
-
-### 4. Animations
-- Staggered card animations
-- Number counting effects
-- Chart hover interactions
-- Button pulse effects
-- Smooth transitions throughout
-
----
-
-## 📖 Usage Guide
-
-### Scanning a URL:
-1. Navigate to "Scan URL" page
-2. Enter or paste a URL
-3. Click "Scan URL" button
-4. View detailed threat analysis
-5. Check threat indicators if any
-
-### Viewing Dashboard:
-1. Sign in to your account
-2. Navigate to "Dashboard"
-3. View scan statistics
-4. Interact with charts
-5. Filter scan history
-
-### User Authentication:
-1. Click "Sign In" button
-2. Toggle between Sign In / Sign Up
-3. Enter credentials
-4. Access dashboard features
-
----
-
-## 🎨 Customization
-
-### Changing Colors:
-Edit `assets/css/style.css` and modify CSS variables:
-```css
-:root{
-  --g1:#22C55E;  /* Primary green */
-  --g2:#16A34A;  /* Secondary green */
-  --bg:#0B0F12;  /* Background */
-  /* ... more variables */
-}
-```
-
-### Adjusting Animations:
-Edit transition timings in `assets/js/app.js`:
-```javascript
-setTimeout(()=>{ /* ... */ }, 300); // Change 300 to your preferred ms
-```
-
-### Modifying Scan Logic:
-Edit the `analyzeURL()` function in `assets/js/app.js`
-
----
-
-## 🐛 Troubleshooting
-
-### Issue: Styles not loading
-**Solution:** Make sure `assets/css/style.css` exists and path is correct
-
-### Issue: JavaScript not working
-**Solution:** Check browser console for errors, ensure `assets/js/app.js` is loaded
-
-### Issue: Paste button not working
-**Solution:** Use HTTPS or localhost (clipboard API requirement)
-
-### Issue: Charts not displaying
-**Solution:** Ensure Canvas API is supported in your browser
-
----
-
-## 📱 Browser Support
-
-- ✅ Chrome/Edge (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Opera (latest)
-- ⚠️ IE11 (limited support)
-
----
-
-## 🔒 Security & Privacy
-
-- All data stored locally (LocalStorage)
-- No external API calls
-- No data sent to servers
-- Client-side only processing
-- Privacy-focused design
-
----
-
-## 📚 Documentation
-
-Detailed documentation available in the `docs/` folder:
-
-- **README_IMPORTANT.md** - Quick comparison guide
-- **SPA_VERSION_GUIDE.md** - SPA architecture details
-- **ANIMATION_IMPROVEMENTS.md** - Animation documentation
-- **QUICK_TEST_GUIDE.md** - Testing instructions
-- **TEST_INSTRUCTIONS.md** - Feature testing guide
-
----
-
-## 🚀 Deployment
-
-### Local Development:
-Just open `index.html` in your browser!
-
-### Web Server:
-Upload all files to your web server:
 ```bash
-# Example with simple HTTP server
-python -m http.server 8000
-# Then open http://localhost:8000
+cd phishguard
 ```
 
-### GitHub Pages:
-1. Push to GitHub repository
-2. Enable GitHub Pages in settings
-3. Select main branch
-4. Your site will be live!
+Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux
+
+```bash
+source venv/bin/activate
+```
+
+Install Packages
+
+```bash
+pip install -r requirements.txt
+```
+
+Run Migrations
+
+```bash
+python manage.py migrate
+```
+
+Run Server
+
+```bash
+python manage.py runserver
+```
+
+Visit
+
+```
+http://127.0.0.1:8000
+```
 
 ---
 
-## 🗄️ Database Integration
+# 🔒 Security Features
 
-PhishGuard now supports cloud database integration! Connect to Firebase for:
-- ✅ Real user authentication
-- ✅ Cloud data storage
-- ✅ Multi-device sync
-- ✅ Real-time updates
-
-**Quick Setup:** See `QUICK_DATABASE_SETUP.md` (5 minutes)
-**Full Guide:** See `DATABASE_INTEGRATION_GUIDE.md` (detailed)
-
-The app works perfectly with or without database - it gracefully falls back to localStorage if Firebase is not configured.
+- URL Structure Analysis
+- Domain Verification
+- HTTPS Validation
+- Machine Learning Classification
+- Threat Score
+- Risk Detection
+- Scan History
+- User Authentication
 
 ---
 
-## 🎯 Future Enhancements
+# 📈 Future Improvements
 
-- [ ] Real API integration for threat detection
-- [ ] Export scan reports as PDF
-- [ ] Dark/Light theme toggle
-- [ ] Multi-language support
-- [ ] Browser extension version
-- [ ] Mobile app version
-- [ ] Advanced filtering options
-- [ ] Scheduled scans
-- [ ] Email notifications
-- [ ] Team collaboration features
-
----
-
-## 📝 License
-
-MIT License - Feel free to use and modify!
+- Email Phishing Detection
+- QR Code Scanner
+- Android Application
+- Browser Store Extension
+- Firefox Support
+- AI Chat Assistant
+- Cloud Database
+- Admin Analytics
+- Threat Intelligence API
+- Multi-language Support
 
 ---
 
-## 🤝 Contributing
+# 🌍 Live Demo
 
-Contributions welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
-- Improve documentation
+🔗 **Website**
+
+https://phishguard.qzz.io/
 
 ---
 
-## 📞 Support
+# 👨‍💻 Developer
 
-For issues or questions:
-1. Check the `docs/` folder for guides
-2. Review troubleshooting section
-3. Check browser console for errors
+**Sovan Shit**
 
----
+**Role**
 
-## 🎉 Acknowledgments
+Frontend Developer
 
-- Font: Outfit, Instrument Serif, DM Mono (Google Fonts)
-- Icons: Unicode emoji
-- Design: Modern glass morphism style
-- Architecture: Single Page Application
+### Contribution
 
----
-
-## 📊 Project Stats
-
-- **Lines of Code**: ~2,500+
-- **Files**: 3 main files (HTML, CSS, JS)
-- **Size**: ~150KB total
-- **Load Time**: <1 second
-- **Performance**: 60fps animations
+- Designed complete responsive UI
+- Login & Registration pages
+- Landing Page
+- URL Scanner
+- Security Dashboard
+- Profile Management
+- Browser Extension UI
+- Responsive Layout
+- User Experience Improvements
 
 ---
 
-## 🔄 Version History
+# 🤝 Contributing
 
-### v1.0.0 (Current)
-- ✅ Single Page Application
-- ✅ Smooth transitions
-- ✅ Interactive charts
-- ✅ Animated dashboard
-- ✅ User authentication
-- ✅ Organized file structure
+Contributions, issues and feature requests are welcome.
 
-### v0.9.0 (Legacy)
-- Multi-page version
-- Basic animations
-- Static charts
-- Separate HTML files
+Feel free to fork the repository and submit a Pull Request.
 
 ---
 
-**Made with ❤️ for web security**
+# 📄 License
 
-Open `index.html` to get started!
+This project is developed for educational and academic purposes.
+
+---
+
+<div align="center">
+
+### ⭐ If you found this project useful, consider giving it a Star.
+
+Made with ❤️ using Django, Python & Machine Learning.
+
+</div>
