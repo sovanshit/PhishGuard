@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PhishGuard - Verify Before You Trust</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body data-page="home">
+
+<!-- ── Ambient & Particles ─────────────────────────────────────── -->
+<div id="orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+<canvas id="particle-canvas"></canvas>
+
+<!-- ── Toast ──────────────────────────────────────────────────── -->
+<div id="toast"></div>
+
+<!-- ── Nav ────────────────────────────────────────────────────── -->
+<nav id="nav">
+  <a class="nav-logo" href="#" onclick="navigateSPA('home'); return false;">
+    <!-- Replace 'logo.png' with your logo file name -->
+    <img src="assets/images/logo.png" alt="PhishGuard Logo" class="nav-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <!-- Fallback to text+icon if image doesn't load -->
+    <div class="nav-logo-fallback" style="display:none;">
+      <svg width="30" height="30" viewBox="0 0 44 44" fill="none">
+        <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22C55E"/><stop offset="100%" stop-color="#4ade80"/></linearGradient></defs>
+        <path d="M22 3.5L5 11v10c0 10 7.5 18.8 17 21 9.5-2.2 17-11 17-21V11L22 3.5z" fill="rgba(34,197,94,.08)" stroke="url(#sg)" stroke-width="1.4"/>
+        <path d="M15 22.5l5 5 9-9" stroke="url(#sg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span><span class="txt-g">PHISH</span><span>GUARD</span></span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a class="btn btn-ghost nav-link" href="#" data-page="home" onclick="navigateSPA('home'); return false;">Home</a>
+    <a class="btn btn-ghost nav-link" href="#" data-page="check" onclick="navigateSPA('check'); return false;">Scan URL</a>
+    <a class="btn btn-ghost nav-link" href="#" data-page="dashboard" onclick="navigateSPA('dashboard'); return false;">Dashboard</a>
+    <!-- Auth / User -->
+    <div id="user-menu-wrap" style="display:none">
+      <button id="avatar-btn" onclick="toggleUserMenu()"></button>
+      <div id="user-dropdown" class="lg">
+        <div class="dd-header">
+          <div class="dd-name" id="dd-name"></div>
+          <div class="dd-email" id="dd-email"></div>
+        </div>
+        <button class="dd-btn" onclick="navigateSPA('dashboard');closeUserMenu()">📊 Dashboard</button>
+        <button class="dd-btn" onclick="navigateSPA('profile');closeUserMenu()">👤 Profile</button>
+        <button class="dd-btn danger" onclick="logout()">↩ Sign Out</button>
+      </div>
+    </div>
+    <a id="signin-nav-btn" class="btn btn-g" style="padding:9px 22px;font-size:14px;margin-left:4px" href="#" onclick="navigateSPA('auth'); return false;">Sign In</a>
+  </div>
+  <button class="hamburger" onclick="toggleMob()">☰</button>
+  <div id="mob-menu" class="mob-menu lg">
+    <a href="#" onclick="navigateSPA('home'); closeMob(); return false;">Home</a>
+    <a href="#" onclick="navigateSPA('check'); closeMob(); return false;">Scan URL</a>
+    <a href="#" onclick="navigateSPA('dashboard'); closeMob(); return false;">Dashboard</a>
+    <div id="mob-auth">
+      <a class="btn btn-g" style="width:100%;padding:11px;margin-top:8px" href="#" onclick="navigateSPA('auth'); closeMob(); return false;">Sign In</a>
+    </div>
+    <div id="mob-user" style="display:none">
+      <a href="#" onclick="navigateSPA('profile'); closeMob(); return false;" style="display:block;padding:10px 16px;color:var(--txt2);text-decoration:none;font-size:14px">👤 Profile</a>
+      <div style="padding:10px 16px;border-top:1px solid rgba(255,255,255,.06);margin-top:6px;font-size:13px;color:var(--txt3)" id="mob-email"></div>
+      <button style="display:block;width:100%;padding:12px 16px;background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.15);color:#ff6b6b;cursor:pointer;text-align:left;font-size:14px;font-family:'Outfit',sans-serif;border-radius:10px;margin-top:4px" onclick="logout()">↩ Sign Out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-badge fu"><div class="pulse-dot"></div>Real-time threat detection</div>
+    <h1 class="fu1 serif">Verify Before You <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Trust</span></h1>
+    <p class="fu2">Instant phishing detection powered by advanced URL analysis. Protect yourself from malicious links before it's too late.</p>
+    <div class="hero-btns fu3">
+      <button class="btn btn-g" style="padding:16px 38px;font-size:16px;border-radius:14px" onclick="navigateSPA('check')">Scan a URL →</button>
+      <button class="btn btn-ghost" style="padding:16px 32px;font-size:16px;border-radius:14px" onclick="navigateSPA('dashboard')">View Dashboard</button>
+    </div>
+    <div class="preview-card lg shine fu4">
+      <div class="preview-top">
+        <svg width="24" height="24" viewBox="0 0 44 44" fill="none"><use href="#shield-def"/></svg>
+        <div style="flex:1"><div style="font-size:11px;color:var(--txt3);margin-bottom:4px">SCAN RESULT</div><div class="mono" style="font-size:13px;color:var(--txt2)">https://github.com</div></div>
+        <div class="safe-pill"><div style="width:6px;height:6px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px #22C55E"></div><span style="font-size:12px;font-weight:600;color:#22C55E">Safe</span></div>
+      </div>
+      <div class="preview-url mono">https://github.com/explore</div>
+      <div class="preview-grid">
+        <div class="preview-cell"><div class="preview-cell-label">SSL</div><div class="preview-cell-val">Valid</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Reputation</div><div class="preview-cell-val">Clean</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Risk Level</div><div class="preview-cell-val">Low</div></div>
+      </div>
+      <div class="preview-bar-wrap">
+        <div class="preview-bar-labels"><span style="font-size:13px;font-weight:600;color:#22C55E">Safety Score</span><span style="font-size:15px;font-weight:700;color:#22C55E">94/100</span></div>
+        <div class="preview-bar-track"><div class="preview-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card lg shine"><div class="stat-num txt-g">10K+</div><div class="stat-label">URLs Scanned Daily</div></div>
+    <div class="stat-card lg shine"><div class="stat-num txt-g">99.8%</div><div class="stat-label">Detection Accuracy</div></div>
+    <div class="stat-card lg shine"><div class="stat-num txt-g">&lt;2s</div><div class="stat-label">Average Scan Time</div></div>
+    <div class="stat-card lg shine"><div class="stat-num txt-g">24/7</div><div class="stat-label">Real-time Protection</div></div>
+  </div>
+  
+  <!-- Features -->
+  <div class="feat-section">
+    <div class="section-heading">
+      <h2 class="serif">How It <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Works</span></h2>
+      <p>Advanced multi-layer analysis to keep you safe from phishing attacks</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card lg shine"><div class="feat-icon">🔍</div><h3>URL Analysis</h3><p>Deep inspection of domain structure, TLD patterns, and suspicious keywords</p></div>
+      <div class="feat-card lg shine"><div class="feat-icon">🔒</div><h3>SSL Verification</h3><p>Validates security certificates and encryption protocols</p></div>
+      <div class="feat-card lg shine"><div class="feat-icon">🗄️</div><h3>Threat Database</h3><p>Cross-references against known malicious domains and patterns</p></div>
+      <div class="feat-card lg shine"><div class="feat-icon">⚡</div><h3>Real-time Scoring</h3><p>Instant risk assessment with detailed threat indicators</p></div>
+    </div>
+  </div>
+  
+  <!-- Education -->
+  <div class="edu-section">
+    <div class="section-heading">
+      <h2 class="serif">Stay <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Informed</span></h2>
+      <p>Learn to recognize and avoid phishing attempts</p>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card lg-sm">
+        <h3>Common Threats</h3>
+        <p>Phishing attacks are evolving. Here's what to watch for:</p>
+      </div>
+      <div class="edu-card lg-sm">
+        <h3>Best Practices</h3>
+        <p>Simple habits that dramatically improve your security:</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px">
+      <div class="threat-item lg-sm"><div class="threat-dot"></div><div><h4>Lookalike Domains</h4><p>paypa1.com instead of paypal.com — subtle character swaps</p></div></div>
+      <div class="threat-item lg-sm"><div class="threat-dot"></div><div><h4>Suspicious TLDs</h4><p>.xyz, .tk, .ml domains often used for phishing</p></div></div>
+      <div class="threat-item lg-sm"><div class="threat-dot"></div><div><h4>Urgent Language</h4><p>"Verify now" or "Account suspended" pressure tactics</p></div></div>
+      <div class="threat-item lg-sm"><div class="threat-dot"></div><div><h4>URL Shorteners</h4><p>bit.ly links that hide the real destination</p></div></div>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card lg-sm"><div class="tip-icon">🔗</div><div class="tip-title">Check the URL</div><div class="tip-desc">Always verify before clicking</div></div>
+      <div class="tip-card lg-sm"><div class="tip-icon">🔒</div><div class="tip-title">Look for HTTPS</div><div class="tip-desc">Secure sites use encryption</div></div>
+      <div class="tip-card lg-sm"><div class="tip-icon">🎣</div><div class="tip-title">Question Urgency</div><div class="tip-desc">Scammers create false pressure</div></div>
+      <div class="tip-card lg-sm"><div class="tip-icon">✉️</div><div class="tip-title">Verify Senders</div><div class="tip-desc">Contact companies directly</div></div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="nav-logo">
+        <img src="assets/images/logo.png" alt="PhishGuard Logo" class="nav-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="nav-logo-fallback" style="display:none;">
+          <svg width="26" height="26" viewBox="0 0 44 44" fill="none"><use href="#shield-def"/></svg>
+          <span><span class="txt-g">PHISH</span><span>GUARD</span></span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="navigateSPA('about'); return false;">About</a>
+        <a href="#" onclick="navigateSPA('privacy'); return false;">Privacy</a>
+        <a href="#" onclick="navigateSPA('terms'); return false;">Terms</a>
+        <a href="#" onclick="navigateSPA('contact'); return false;">Contact</a>
+        <a href="#" onclick="navigateSPA('extension'); return false;">DOWNLOAD EXTENSION</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 PhishGuard. Built to protect. Open source security.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHECK PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-check" class="page">
+  <div class="check-inner">
+    <div class="check-header">
+      <h1 class="fu serif">URL <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Scanner</span></h1>
+      <p class="fu1">Paste any URL for an instant threat assessment</p>
+    </div>
+    <!-- Input Card -->
+    <div class="input-card lg shine fu2">
+      <div class="url-input-wrap">
+        <div class="url-input-shield">
+          <svg width="18" height="18" viewBox="0 0 44 44" fill="none"><use href="#shield-def"/></svg>
+        </div>
+        <input id="url-input" class="mono" type="text" placeholder="Paste or enter a URL… e.g. https://example.com" oninput="onUrlInput()" onkeydown="if(event.key==='Enter')doScan()"/>
+        <button id="paste-btn" onclick="pasteURL()">PASTE</button>
+      </div>
+      <div id="url-error"><span class="err-icon">⚠</span><span class="err-msg" id="url-err-msg"></span></div>
+      <button id="scan-btn" class="btn btn-g" onclick="doScan()" disabled>Scan URL →</button>
+    </div>
+    <!-- Progress -->
+    <div id="scan-progress" class="lg">
+      <div class="spinner-wrap">
+        <div class="spinner-ring spinner-r1"></div>
+        <div class="spinner-ring spinner-r2"></div>
+        <div class="spinner-ring spinner-r3"></div>
+        <div class="spinner-icon">
+          <svg width="26" height="26" viewBox="0 0 44 44" fill="none" style="filter:drop-shadow(0 0 12px rgba(34,197,94,.6))"><use href="#shield-def"/></svg>
+        </div>
+      </div>
+      <div id="step-msg"></div>
+      <div class="prog-track"><div id="prog-bar"></div></div>
+      <div id="prog-pct"></div>
+    </div>
+    <!-- Result -->
+    <div id="scan-result">
+      <div class="result-card lg shine" style="position:relative">
+        <div id="result-glow" class="result-glow"></div>
+        <div class="result-top">
+          <div>
+            <div class="status-label">Threat Status</div>
+            <div id="status-pill" class="status-pill">
+              <div id="status-dot" class="status-dot"></div>
+              <span id="status-name" class="status-name"></span>
+            </div>
+          </div>
+          <div class="score-wrap">
+            <div class="score-label">Safety Score</div>
+            <div><span id="score-num" class="score-num"></span><span class="score-denom">/100</span></div>
+          </div>
+        </div>
+        <div class="meter-labels"><span style="font-size:12px;color:var(--txt3)">Risk Level</span></div>
+        <div class="meter-track">
+          <div class="meter-rainbow"></div>
+          <div id="meter-fill"></div>
+        </div>
+        <div id="scanned-url-display" class="scanned-url-display mono"></div>
+        <div class="metrics-grid">
+          <div class="metric-cell"><div class="metric-label">Reputation</div><div id="m-reputation" class="metric-val"></div></div>
+          <div class="metric-cell"><div class="metric-label">SSL Status</div><div id="m-ssl" class="metric-val"></div></div>
+          <div class="metric-cell"><div class="metric-label">Risk Level</div><div id="m-risk" class="metric-val"></div></div>
+          <div class="metric-cell"><div class="metric-label">Domain</div><div id="m-domain" class="metric-val"></div></div>
+        </div>
+      </div>
+      <div id="threat-flags" class="lg">
+        <div class="flag-header" id="flag-count"></div>
+        <div id="flag-list"></div>
+      </div>
+      <div id="visit-btn-wrap">
+        <a id="visit-btn" class="btn btn-g" style="padding:14px 32px;font-size:15px;border-radius:14px;text-decoration:none" target="_blank">Visit Site →</a>
+      </div>
+    </div>
+    <!-- History -->
+    <div id="scan-history" class="lg">
+      <div class="history-title">Recent Scans</div>
+      <div id="history-list" class="history-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     DASHBOARD PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+  <!-- Locked state -->
+  <div id="dash-locked">
+    <div class="locked-card lg shine">
+      <svg width="72" height="72" viewBox="0 0 44 44" fill="none" style="filter:drop-shadow(0 0 12px rgba(34,197,94,.6));animation:float 3s ease-in-out infinite"><use href="#shield-def"/></svg>
+      <h2 class="serif">Sign In Required</h2>
+      <p>Access your security dashboard to track scans, view analytics, and manage threats.</p>
+      <button class="btn btn-g" style="padding:14px 36px;font-size:15px;border-radius:14px" onclick="navigateSPA('auth')">Sign In →</button>
+    </div>
+  </div>
+  <!-- Dashboard content -->
+  <div id="dash-content">
+    <div class="dash-header">
+      <div class="dash-title-wrap">
+        <h1 class="serif">Security <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Dashboard</span></h1>
+        <p id="dash-welcome">Welcome back</p>
+      </div>
+      <div class="profile-card lg">
+        <div class="profile-avatar" id="profile-avatar"></div>
+        <div>
+          <div class="profile-name" id="profile-name"></div>
+          <div class="profile-email" id="profile-email-display"></div>
+          <div class="profile-status"><div class="profile-dot"></div><span>Pro Account</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Metrics -->
+    <div class="metrics-row" id="dash-metrics"></div>
+    <!-- Charts -->
+    <div class="charts-row">
+      <div class="chart-card lg">
+        <div class="chart-title">Scan Activity — Last 7 Days</div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-line" style="background:#22C55E"></div>Safe</div>
+          <div class="legend-item"><div class="legend-line" style="background:#f5a623"></div>Suspicious</div>
+          <div class="legend-item"><div class="legend-line" style="background:#ff4d4d"></div>Malicious</div>
+        </div>
+        <canvas id="line-chart-canvas"></canvas>
+      </div>
+      <div class="chart-card lg">
+        <div class="chart-title">Threat Distribution</div>
+        <canvas id="pie-chart-canvas"></canvas>
+        <div class="pie-legend" id="pie-legend"></div>
+      </div>
+    </div>
+    <!-- History table -->
+    <div class="history-section lg">
+      <div class="history-controls">
+        <div class="hs-title">Scan History</div>
+        <div class="history-filter-row">
+          <input id="dash-search" placeholder="Search…" oninput="renderDashTable()"/>
+          <button class="filter-btn active" data-filter="all" onclick="setFilter(this)">All</button>
+          <button class="filter-btn" data-filter="safe" onclick="setFilter(this)">Safe</button>
+          <button class="filter-btn" data-filter="suspicious" onclick="setFilter(this)">Suspicious</button>
+          <button class="filter-btn" data-filter="malicious" onclick="setFilter(this)">Malicious</button>
+          <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px;margin-left:8px" onclick="exportCSV()">📊 Export CSV</button>
+        </div>
+      </div>
+      <div id="dash-table-wrap">
+        <table id="dash-table">
+          <thead><tr><th>URL</th><th>Status</th><th>Score</th><th>Date</th></tr></thead>
+          <tbody id="dash-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PROFILE PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-profile" class="page">
+  <div class="profile-page-wrap">
+    <div class="profile-page-header">
+      <h1 class="serif">Profile <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Settings</span></h1>
+      <p>Manage your account information and preferences</p>
+    </div>
+    
+    <div class="profile-sections">
+      <!-- Personal Information Section -->
+      <div class="profile-section lg shine">
+        <div class="profile-section-header">
+          <h3>Personal Information</h3>
+          <p>Update your personal details</p>
+        </div>
+        <div class="profile-form">
+          <div class="profile-field-row">
+            <div class="profile-field">
+              <label>Full Name</label>
+              <input type="text" id="profile-name-input" class="field-input" placeholder="Your name"/>
+              <div class="field-err" id="err-profile-name"></div>
+            </div>
+            <div class="profile-field">
+              <label>Email Address</label>
+              <input type="email" id="profile-email-input" class="field-input" placeholder="your@email.com" disabled/>
+              <p class="field-hint">Email cannot be changed</p>
+            </div>
+          </div>
+          <button class="btn btn-g" onclick="updateProfile()">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Change Password Section -->
+      <div class="profile-section lg shine">
+        <div class="profile-section-header">
+          <h3>Change Password</h3>
+          <p>Update your password to keep your account secure</p>
+        </div>
+        <div class="profile-form">
+          <div class="profile-field">
+            <label>Current Password</label>
+            <input type="password" id="profile-current-password" class="field-input" placeholder="••••••••"/>
+            <div class="field-err" id="err-current-password"></div>
+          </div>
+          <div class="profile-field">
+            <label>New Password</label>
+            <input type="password" id="profile-new-password" class="field-input" placeholder="••••••••"/>
+            <div class="field-err" id="err-new-password"></div>
+          </div>
+          <div class="profile-field">
+            <label>Confirm New Password</label>
+            <input type="password" id="profile-confirm-password" class="field-input" placeholder="••••••••"/>
+            <div class="field-err" id="err-confirm-password"></div>
+          </div>
+          <button class="btn btn-g" onclick="changePassword()">Update Password</button>
+        </div>
+      </div>
+
+      <!-- Account Information Section -->
+      <div class="profile-section lg shine">
+        <div class="profile-section-header">
+          <h3>Account Information</h3>
+          <p>View your account details</p>
+        </div>
+        <div class="profile-info-grid">
+          <div class="profile-info-item">
+            <div class="profile-info-label">Account Type</div>
+            <div class="profile-info-value">
+              <span class="profile-badge">Pro Account</span>
+            </div>
+          </div>
+          <div class="profile-info-item">
+            <div class="profile-info-label">Member Since</div>
+            <div class="profile-info-value" id="profile-member-since">-</div>
+          </div>
+          <div class="profile-info-item">
+            <div class="profile-info-label">Total Scans</div>
+            <div class="profile-info-value txt-g" id="profile-total-scans">0</div>
+          </div>
+          <div class="profile-info-item">
+            <div class="profile-info-label">Login Method</div>
+            <div class="profile-info-value" id="profile-login-method">Email</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="profile-section lg shine danger-section">
+        <div class="profile-section-header">
+          <h3>Danger Zone</h3>
+          <p>Irreversible actions</p>
+        </div>
+        <div class="danger-actions">
+          <div class="danger-action-item">
+            <div>
+              <div class="danger-action-title">Clear Scan History</div>
+              <div class="danger-action-desc">Remove all your scan history permanently</div>
+            </div>
+            <button class="btn btn-ghost danger" onclick="clearHistory()">Clear History</button>
+          </div>
+          <div class="danger-action-item">
+            <div>
+              <div class="danger-action-title">Delete Account</div>
+              <div class="danger-action-desc">Permanently delete your account and all data</div>
+            </div>
+            <button class="btn btn-ghost danger" onclick="deleteAccount()">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     AUTH PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-auth" class="page">
+  <div class="auth-wrap">
+    <!-- Left Panel -->
+    <div class="auth-left lg-green">
+      <svg width="60" height="60" viewBox="0 0 44 44" fill="none" style="filter:drop-shadow(0 0 12px rgba(34,197,94,.6));flex-shrink:0"><use href="#shield-def"/></svg>
+      <h2 class="serif" id="auth-left-title">Welcome back.</h2>
+      <p id="auth-left-sub">Sign in to access your security dashboard and full scan history.</p>
+      <div class="auth-perks">
+        <div class="auth-perk-title">What's included</div>
+        <div class="auth-perk"><span class="ck">✓</span>Unlimited URL scans</div>
+        <div class="auth-perk"><span class="ck">✓</span>Threat history &amp; analytics</div>
+        <div class="auth-perk"><span class="ck">✓</span>Real-time protection</div>
+        <div class="auth-perk"><span class="ck">✓</span>Advanced reporting</div>
+      </div>
+    </div>
+    <!-- Right Panel -->
+    <div class="auth-right lg">
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="signin-tab" onclick="switchMode('signin')">Sign In</button>
+        <button class="mode-btn" id="signup-tab" onclick="switchMode('signup')">Sign Up</button>
+      </div>
+      <!-- Google -->
+      <button class="btn btn-ghost google-btn" onclick="signInWithGoogle()">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/><path fill="#FBBC05" d="M3.964 10.712A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.712V4.956H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.044l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.956L3.964 7.288C4.672 5.163 6.656 3.58 9 3.58z"/></svg>
+        Continue with Google
+      </button>
+      <div class="divider"><div class="divider-line"></div><span>or</span><div class="divider-line"></div></div>
+      <!-- Signup only fields -->
+      <div id="signup-fields">
+        <div class="field-wrap">
+          <label>Full Name</label>
+          <input class="field-input" id="f-name" type="text" placeholder="Jane Smith" oninput="clearErr('name')"/>
+          <div class="field-err" id="err-name"></div>
+        </div>
+      </div>
+      <!-- Common fields -->
+      <div class="field-wrap">
+        <label>Email Address</label>
+        <input class="field-input" id="f-email" type="email" placeholder="you@example.com" oninput="clearErr('email')"/>
+        <div class="field-err" id="err-email"></div>
+      </div>
+      <div class="field-wrap">
+        <label>Password</label>
+        <input class="field-input" id="f-password" type="password" placeholder="••••••••" oninput="clearErr('password')"/>
+        <div class="field-err" id="err-password"></div>
+      </div>
+      <!-- Signup only -->
+      <div id="signup-fields-2">
+        <div class="field-wrap">
+          <label>Confirm Password</label>
+          <input class="field-input" id="f-confirm" type="password" placeholder="••••••••" oninput="clearErr('confirm')"/>
+          <div class="field-err" id="err-confirm"></div>
+        </div>
+      </div>
+      <!-- Terms -->
+      <div id="terms-row" class="terms-row">
+        <input type="checkbox" id="f-terms" onchange="clearErr('terms')"/>
+        <span>I agree to the <a>Terms &amp; Conditions</a> and <a>Privacy Policy</a></span>
+      </div>
+      <div id="terms-err"></div>
+      <!-- Submit -->
+      <button class="btn btn-g submit-btn" id="submit-btn" onclick="submitAuth()">Sign In →</button>
+      <!-- Forgot -->
+      <div id="forgot-wrap" class="show"><div class="forgot-link"><a onclick="forgotPassword()">Forgot password?</a></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ABOUT PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="content-page-wrap">
+    <div class="content-header fu">
+      <h1 class="serif">About <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">PhishGuard</span></h1>
+      <p>Protecting users from phishing threats with intelligent URL analysis</p>
+    </div>
+    
+    <div class="content-section lg shine fu1">
+      <h2>Our Mission</h2>
+      <p>PhishGuard was built to make the internet safer for everyone. We provide real-time protection against phishing attacks through advanced URL analysis, helping users verify links before they click.</p>
+    </div>
+    
+    <div class="content-section lg shine fu2">
+      <h2>How We Work</h2>
+      <p>Our intelligent scanning engine analyzes URLs across multiple dimensions:</p>
+      <ul>
+        <li>Domain reputation and SSL certificate validation</li>
+        <li>Detection of lookalike domains and suspicious TLDs</li>
+        <li>Identification of phishing keywords and patterns</li>
+        <li>Real-time threat intelligence integration</li>
+      </ul>
+    </div>
+    
+    <div class="content-section lg shine fu3">
+      <h2>Open Source Security</h2>
+      <p>PhishGuard is committed to transparency and community-driven security. Our detection algorithms are continuously improved to stay ahead of evolving phishing tactics.</p>
+    </div>
+    
+    <div class="content-action fu4">
+      <button class="btn btn-g" onclick="navigateSPA('check')">Try URL Scanner →</button>
+      <button class="btn btn-ghost" onclick="navigateSPA('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PRIVACY PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-privacy" class="page">
+  <div class="content-page-wrap">
+    <div class="content-header fu">
+      <h1 class="serif">Privacy <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Policy</span></h1>
+      <p>Last updated: December 2024</p>
+    </div>
+    
+    <div class="content-section lg shine fu1">
+      <h2>Information We Collect</h2>
+      <p><strong>Account Information:</strong> When you create an account, we collect your name and email address for authentication purposes.</p>
+      <p><strong>Scan History:</strong> URLs you scan are stored to provide history and analytics. This data is associated with your account.</p>
+      <p><strong>Usage Data:</strong> We collect aggregated, anonymous data about feature usage to improve the service.</p>
+    </div>
+    
+    <div class="content-section lg shine fu2">
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>Provide and maintain PhishGuard services</li>
+        <li>Authenticate users and secure accounts</li>
+        <li>Display your personal scan history and statistics</li>
+        <li>Improve threat detection algorithms</li>
+        <li>Send important service updates (with your consent)</li>
+      </ul>
+    </div>
+    
+    <div class="content-section lg shine fu3">
+      <h2>Data Security</h2>
+      <p>We use Firebase Authentication and Firestore to securely store your data. All data is encrypted in transit and at rest. We implement industry-standard security practices to protect your information.</p>
+    </div>
+    
+    <div class="content-section lg shine fu4">
+      <h2>Your Rights</h2>
+      <p>You have the right to access, update, or delete your personal information at any time through your profile settings. You can also export your scan history or delete your account permanently.</p>
+    </div>
+    
+    <div class="content-section lg shine fu5">
+      <h2>Third-Party Services</h2>
+      <p>We use Firebase (Google) for authentication and data storage. Please review <a href="https://firebase.google.com/support/privacy" target="_blank" style="color:var(--g1)">Firebase's Privacy Policy</a> for details on how they handle data.</p>
+    </div>
+    
+    <div class="content-action fu6">
+      <button class="btn btn-ghost" onclick="navigateSPA('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TERMS PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-terms" class="page">
+  <div class="content-page-wrap">
+    <div class="content-header fu">
+      <h1 class="serif">Terms of <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Service</span></h1>
+      <p>Last updated: December 2024</p>
+    </div>
+    
+    <div class="content-section lg shine fu1">
+      <h2>Acceptance of Terms</h2>
+      <p>By accessing and using PhishGuard, you accept and agree to be bound by these Terms of Service. If you do not agree, please do not use our service.</p>
+    </div>
+    
+    <div class="content-section lg shine fu2">
+      <h2>Service Description</h2>
+      <p>PhishGuard provides URL analysis and phishing detection services. While we strive for accuracy, our threat assessments are provided "as is" without warranties of any kind.</p>
+    </div>
+    
+    <div class="content-section lg shine fu3">
+      <h2>User Responsibilities</h2>
+      <ul>
+        <li>Use PhishGuard for legitimate security purposes only</li>
+        <li>Do not abuse or attempt to circumvent our systems</li>
+        <li>Keep your account credentials secure</li>
+        <li>Use your own judgment when visiting websites</li>
+        <li>Report any security vulnerabilities responsibly</li>
+      </ul>
+    </div>
+    
+    <div class="content-section lg shine fu4">
+      <h2>Limitations of Liability</h2>
+      <p>PhishGuard provides threat intelligence as a tool to assist users. We are not liable for any damages resulting from:</p>
+      <ul>
+        <li>False positives or false negatives in threat detection</li>
+        <li>Your decision to visit or avoid certain websites</li>
+        <li>Service interruptions or data loss</li>
+        <li>Third-party actions or content</li>
+      </ul>
+    </div>
+    
+    <div class="content-section lg shine fu5">
+      <h2>Account Termination</h2>
+      <p>We reserve the right to suspend or terminate accounts that violate these terms or engage in abusive behavior. You may delete your account at any time through profile settings.</p>
+    </div>
+    
+    <div class="content-section lg shine fu6">
+      <h2>Changes to Terms</h2>
+      <p>We may update these terms periodically. Continued use of PhishGuard after changes constitutes acceptance of the updated terms.</p>
+    </div>
+    
+    <div class="content-action fu7">
+      <button class="btn btn-ghost" onclick="navigateSPA('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="content-page-wrap">
+    <div class="content-header fu">
+      <h1 class="serif">Contact <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Us</span></h1>
+      <p>Get in touch with the PhishGuard team</p>
+    </div>
+    
+    <!-- Team Section First -->
+    <div class="content-section lg shine fu1">
+      <h2>👥 Meet the Team</h2>
+      <p style="margin-bottom:24px;color:var(--txt2)">The people building PhishGuard</p>
+      
+      <div class="team-grid">
+        <!-- Lead Creator -->
+                <div class="team-member-item">
+    <div class="team-avatar-sm">
+    <img src="assets/images/rishi-profile.jpg" alt="Rishipratim">
+    </div>
+    <div class="team-member-name">
+        Contributor Name 1
+    </div>
+    <div class="team-role-inline">
+        Contributor
+    </div>
+    <div class="team-social">
+        <a href="https://github.com/contributor1"
+           target="_blank"
+           class="team-social-link">
+           <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/contributor1"
+           target="_blank"
+           class="team-social-link">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+            </svg>
+          </a>
+      </div>
+    </div>
+        
+        <!-- Contributor 1 -->
+       <div class="team-member-item">
+    <div class="team-avatar-sm">
+    <img src="assets/images/sovan-profile.jpg" alt="Sovan">
+    </div>
+    <div class="team-member-name">
+        Contributor Name 2
+    </div>
+    <div class="team-role-inline">
+        Contributor
+    </div>
+    <div class="team-social">
+        <a href="https://github.com/contributor1"
+           target="_blank"
+           class="team-social-link">
+           <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/contributor1"
+           target="_blank"
+           class="team-social-link">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>    
+        </a>
+      </div>
+    </div>
+        
+        <!-- Contributor 2 -->
+          <div class="team-member-item">
+    <div class="team-avatar-sm">
+    <img src="assets/images/abhijit-profile.jpg" alt="Abhijit">
+    </div>
+    <div class="team-member-name">
+        Contributor Name 3
+    </div>
+    <div class="team-role-inline">
+        Contributor
+    </div>
+    <div class="team-social">
+        <a href="https://github.com/contributor1"
+           target="_blank"
+           class="team-social-link">
+           <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/abhijit-mondal-a2bb413a8/?skipRedirect=true"
+           target="_blank"
+           class="team-social-link">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+            </svg>
+        </a>
+    </div>
+  </div>
+
+        <!-- Contributor 3 -->
+                <div class="team-member-item">
+    <div class="team-avatar-sm">
+        <img src="assets/images/rema-profile.jpg" alt="Rema">
+    </div>
+    <div class="team-member-name">
+        Contributor Name 3
+    </div>
+    <div class="team-role-inline">
+        Contributor
+    </div>
+    <div class="team-social">
+        <a href="https://github.com/contributor1"
+           target="_blank"
+           class="team-social-link">
+           <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/rema-chowdhury-7a335b254/"
+           target="_blank"
+           class="team-social-link">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+            </svg>
+        </a>
+    </div>
+  </div
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Information -->
+    <div class="contact-grid fu2">
+      <div class="contact-card lg shine">
+        <div class="contact-icon">📧</div>
+        <h3>General Support</h3>
+        <p>For inquiries, support, or feedback</p>
+        <a href="mailto:support@phishguard.qzz.io" class="contact-link">support@phishguard.qzz.io</a>
+      </div>
+      
+      <div class="contact-card lg shine">
+        <div class="contact-icon">🐛</div>
+        <h3>Security Issues</h3>
+        <p>Report vulnerabilities responsibly</p>
+        <a href="mailto:security@phishguard.qzz.io" class="contact-link">security@phishguard.qzz.io</a>
+      </div>
+      
+      <div class="contact-card lg shine">
+        <div class="contact-icon">💼</div>
+        <h3>Business Inquiries</h3>
+        <p>Partnerships & enterprise solutions</p>
+        <a href="mailto:business@phishguard.qzz.io" class="contact-link">business@phishguard.qzz.io</a>
+      </div>
+    </div>
+    
+    <div class="content-action fu3">
+      <button class="btn btn-ghost" onclick="navigateSPA('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     API PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-api" class="page">
+  <div class="content-page-wrap">
+    <div class="content-header fu">
+      <h1 class="serif">API <span class="txt-g" style="font-family:'Outfit',sans-serif;font-weight:700;font-style:normal">Documentation</span></h1>
+      <p>Integrate PhishGuard threat detection into your applications</p>
+    </div>
+    
+    <div class="content-section lg shine fu1">
+      <h2>🚀 Getting Started</h2>
+      <p>The PhishGuard API allows you to programmatically scan URLs and receive threat assessments. Perfect for integrating security checks into your applications, browser extensions, or security tools.</p>
+    </div>
+    
+    <div class="content-section lg shine fu2">
+      <h2>📋 API Endpoint</h2>
+      <div class="code-block">
+        <code>POST https://api.phishguard.com/v1/scan</code>
+      </div>
+      <p style="margin-top:12px"><strong>Request Body:</strong></p>
+      <pre class="code-block" style="margin-top:8px">{
+  "url": "https://example.com",
+  "api_key": "your_api_key_here"
+}</pre>
+    </div>
+    
+    <div class="content-section lg shine fu3">
+      <h2>📤 Response Format</h2>
+      <pre class="code-block">{
+  "url": "https://example.com",
+  "score": 94,
+  "status": "Safe",
+  "ssl": "Valid",
+  "reputation": "Clean",
+  "risk": "Low",
+  "flags": [],
+  "timestamp": "2024-12-11T12:00:00Z"
+}</pre>
+    </div>
+    
+    <div class="content-section lg shine fu4">
+      <h2>🔑 Authentication</h2>
+      <p>API access requires an API key. To request access:</p>
+      <ol style="margin-top:12px">
+        <li>Create a PhishGuard account</li>
+        <li>Contact us at <a href="mailto:api@phishguard.com" style="color:var(--g1)">api@phishguard.com</a></li>
+        <li>Describe your use case and expected volume</li>
+        <li>Receive your API key within 1-3 business days</li>
+      </ol>
+    </div>
+    
+    <div class="content-section lg shine fu5">
+      <h2>📊 Rate Limits</h2>
+      <ul>
+        <li><strong>Free Tier:</strong> 100 requests/day</li>
+        <li><strong>Basic:</strong> 1,000 requests/day ($29/month)</li>
+        <li><strong>Pro:</strong> 10,000 requests/day ($99/month)</li>
+        <li><strong>Enterprise:</strong> Custom limits (contact us)</li>
+      </ul>
+    </div>
+    
+    <div class="content-section lg shine fu6">
+      <h2>📚 Use Cases</h2>
+      <ul>
+        <li>Browser extensions and security tools</li>
+        <li>Email security gateways</li>
+        <li>Corporate security systems</li>
+        <li>Chat platforms and link scanners</li>
+        <li>Security research and analysis</li>
+      </ul>
+    </div>
+    
+    <div class="content-action fu7">
+      <button class="btn btn-g" onclick="window.location.href='mailto:api@phishguard.com'">Request API Access →</button>
+      <button class="btn btn-ghost" onclick="navigateSPA('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<svg style="display:none">
+  <defs>
+    <linearGradient id="sg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22C55E"/><stop offset="100%" stop-color="#4ade80"/></linearGradient>
+    <symbol id="shield-def" viewBox="0 0 44 44">
+      <path d="M22 3.5L5 11v10c0 10 7.5 18.8 17 21 9.5-2.2 17-11 17-21V11L22 3.5z" fill="rgba(34,197,94,.08)" stroke="url(#sg2)" stroke-width="1.4"/>
+      <path d="M15 22.5l5 5 9-9" stroke="url(#sg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+<!-- <script src="assets/js/app.js"></script> -->
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<!-- Firebase Configuration -->
+<script>
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDd_1gm47flR8Gz7ce8Vady-yPXR9c8oPA",
+    authDomain: "phishguard-38aaa.firebaseapp.com",
+    projectId: "phishguard-38aaa",
+    storageBucket: "phishguard-38aaa.firebasestorage.app",
+    messagingSenderId: "319015173874",
+    appId: "1:319015173874:web:32a59006d688f4c964da6b"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // Get references
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
+
+<!-- Firebase Database Functions -->
+<script src="assets/js/firebase-db.js"></script>
+
+<!-- Your app.js -->
+<script src="assets/js/app.js"></script>
+</body>
+</html>
